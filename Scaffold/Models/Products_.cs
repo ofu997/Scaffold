@@ -11,11 +11,19 @@ namespace Scaffold.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Products_
+	using System.ComponentModel.DataAnnotations;
+
+	public partial class Products_
     {
         public System.Guid ProductId { get; set; }
+
+		/* show user something more meaningful
+		 other than name of property, a data annotation
+		 This shows "Product name" on all routes
+		*/
+		[Display(Name ="Product name")]
         public string Name { get; set; }
+
         public decimal Price { get; set; }
     }
 }
