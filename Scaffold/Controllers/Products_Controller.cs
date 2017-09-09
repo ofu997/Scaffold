@@ -32,6 +32,12 @@ namespace Scaffold.Controllers
             {
                 return HttpNotFound();
             }
+
+			/*
+			var myValue = Request.QueryString["somesuch"];
+			var myOtherValue = Request["somesuch"];
+			*/
+
             return View(products_);
         }
 

@@ -7,8 +7,25 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create")<br/>
+    @Html.ActionLink("CreateV3", "Create", new RouteValueDictionary(new { locale = "en-US", year = DateTime.Now.Year.ToString() }))
 </p>
+
+@{ 
+    //belongs to version 4
+    var myDictionary = new Dictionary<string, object>();
+    myDictionary.Add("First", "A");
+    myDictionary.Add("Second", "B");
+    myDictionary.Add("third", "C");
+}
+
+@*the ActionLink below uses the variable myDictionary passed in 
+    and we see First=A et cetera in the url when it's run.
+    The routeValues we pass in represent a dicitonary of values
+    that are mapped to a specific route defined in your RouteConfig.cs 
+    *@
+@Html.ActionLink("CreateV4", "Create", new RouteValueDictionary(myDictionary))
+
 <table class="table">
     <tr>
         <th>
@@ -29,7 +46,11 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
+            @*the id below is passed to RouteConfig.cs, 
+                if it's id=item.ProductId, somesuch=456,
+                that will also go in browser url*@
+
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId, somesuch=456 }) |
             @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
         </td>
