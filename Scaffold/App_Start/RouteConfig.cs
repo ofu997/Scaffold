@@ -15,6 +15,9 @@ namespace Scaffold
 
             routes.MapRoute(
                 name: "Default",
+
+				// Products/(action)/idOfThing
+				// Amazon.com does a good job of segmented routes 
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );

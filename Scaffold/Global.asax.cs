@@ -12,6 +12,8 @@ namespace Scaffold
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+			// called from routeconfig.cs 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
