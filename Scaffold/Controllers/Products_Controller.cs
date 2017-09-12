@@ -41,7 +41,10 @@ namespace Scaffold.Controllers
             return View(products_);
         }
 
+		// added these two
+
         // GET: Products_/Create
+		// added 2 parameters 
         public ActionResult Create()
         {
             return View();
@@ -52,96 +55,107 @@ namespace Scaffold.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,Name,Price")] Products_ products_)
-        {
+		// 		public ActionResult Create([Bind(Include="ProductId,Name,Price")])
+		// public ActionResult Create(string Name, decimal Price)
+		public ActionResult Create(Products_ product)
+
+		{
 			// vid 005: another way of writing the below content
 
-			/*
-            if (ModelState.IsValid)
-            {
-                products_.ProductId = Guid.NewGuid();
-                db.Products_.Add(products_);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-			*/
-
-			/*
-			this is weakly typed
-
-			var product = new Products_();
+			// at 11:10 in vid 15 this is commented in 
+			if (ModelState.IsValid)
+		{
 			product.ProductId = Guid.NewGuid();
-			product.Name = Request["Name"];
-			product.Price = Decimal.Parse(Request["Price"]);
-			*/
+			db.Products_.Add(product);
+			db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 
-            return View(products_);
-        }
 
-        // GET: Products_/Edit/5
-        public ActionResult Edit(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Products_ products_ = db.Products_.Find(id);
-            if (products_ == null)
-            {
-                return HttpNotFound();
-            }
-            return View(products_);
-        }
+		/*
+		this is weakly typed
+		var product = new Products_();
+		product.ProductId = Guid.NewGuid();
+		product.Name = Request["Name"];
+		product.Price = Decimal.Parse(Request["Price"]);
+		*/
 
-        // POST: Products_/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,Name,Price")] Products_ products_)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(products_).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(products_);
-        }
+		/*
+		at 11:10 in the video this is commented out 
+					var product = new Products_();
+		product.ProductId = Guid.NewGuid();
+		product.Name = Name;
+		product.Price = Price;
+		*/
 
-        // GET: Products_/Delete/5
-        public ActionResult Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Products_ products_ = db.Products_.Find(id);
-            if (products_ == null)
-            {
-                return HttpNotFound();
-            }
-            return View(products_);
-        }
+		// save these to database
+		return View(product);
+		}
 
-        // POST: Products_/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
-        {
-            Products_ products_ = db.Products_.Find(id);
-            db.Products_.Remove(products_);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+		// GET: Products_/Edit/5
+		public ActionResult Edit(Guid? id)
+		{
+		if (id == null)
+		{
+			return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+		}
+		Products_ products_ = db.Products_.Find(id);
+		if (products_ == null)
+		{
+			return HttpNotFound();
+		}
+		return View(products_);
+		}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-    }
-}
+		// POST: Products_/Edit/5
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Edit([Bind(Include = "ProductId,Name,Price")] Products_ products_)
+		{
+		if (ModelState.IsValid)
+		{
+			db.Entry(products_).State = EntityState.Modified;
+			db.SaveChanges();
+			return RedirectToAction("Index");
+		}
+		return View(products_);
+		}
+
+		// GET: Products_/Delete/5
+		public ActionResult Delete(Guid? id)
+		{
+		if (id == null)
+		{
+			return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+		}
+		Products_ products_ = db.Products_.Find(id);
+		if (products_ == null)
+		{
+			return HttpNotFound();
+		}
+		return View(products_);
+		}
+
+		// POST: Products_/Delete/5
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public ActionResult DeleteConfirmed(Guid id)
+		{
+		Products_ products_ = db.Products_.Find(id);
+		db.Products_.Remove(products_);
+		db.SaveChanges();
+		return RedirectToAction("Index");
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+		if (disposing)
+		{
+			db.Dispose();
+		}
+		base.Dispose(disposing);
+		}
+		}
+		}

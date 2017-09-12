@@ -1,4 +1,24 @@
-﻿@model Scaffold.Models.Products_
+﻿@*
+    post back to index action method,
+    using home controller, using the form method Post
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post)
+    {
+        // creates  textbox for attribute of view model called Title
+        // pass in new html attribute, sets attribute = to form control
+        //
+        <div class="form-group">
+        @Html.LabelFor(p=>p.title)
+        @Html.TextBoxFor(p=>p.title, new {@class="form-control"})
+        </div>
+
+        <div class="form-group">
+        @Html.LabelFor(p=>p.CopiesSold)
+        @Html.EditorFor(p=>p.CopiesSold, new {@class="form-control"})
+        </div>
+    }
+*@
+
+@model Scaffold.Models.Products_
 
 @{
     ViewBag.Title = "Create";
