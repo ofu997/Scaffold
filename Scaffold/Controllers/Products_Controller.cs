@@ -54,6 +54,9 @@ namespace Scaffold.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductId,Name,Price")] Products_ products_)
         {
+			// vid 005: another way of writing the below content
+
+			/*
             if (ModelState.IsValid)
             {
                 products_.ProductId = Guid.NewGuid();
@@ -61,6 +64,16 @@ namespace Scaffold.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+			*/
+
+			/*
+			this is weakly typed
+
+			var product = new Products_();
+			product.ProductId = Guid.NewGuid();
+			product.Name = Request["Name"];
+			product.Price = Decimal.Parse(Request["Price"]);
+			*/
 
             return View(products_);
         }
