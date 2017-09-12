@@ -13,6 +13,8 @@ namespace Scaffold.Models
     using System.Collections.Generic;
 	using System.ComponentModel.DataAnnotations;
 
+	// "partial" extend the class with class 
+	//file with exact same name (Product) and with product class
 	public partial class Products_
     {
         public System.Guid ProductId { get; set; }
