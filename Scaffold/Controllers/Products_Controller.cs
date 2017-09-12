@@ -58,10 +58,17 @@ namespace Scaffold.Controllers
 		// 		public ActionResult Create([Bind(Include="ProductId,Name,Price")])
 		// public ActionResult Create(string Name, decimal Price)
 		public ActionResult Create(Products_ product)
-
 		{
-			// vid 005: another way of writing the below content
-
+			if (string.IsNullOrEmpty(product.Name))
+			{
+				ModelState.AddModelError("Name,", "Name isa requiredfield.");
+			}
+			if (ModelState.IsValidField("Price")
+				&& (product.Price < 0.01M)
+				|| (product.Price > 1000M))
+			{
+				ModelState.AddModelError("Price", "PLease enter a valid price between 0.01 and 1000");
+			}
 			// at 11:10 in vid 15 this is commented in 
 			if (ModelState.IsValid)
 		{
